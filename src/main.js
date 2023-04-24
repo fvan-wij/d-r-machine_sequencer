@@ -1,14 +1,27 @@
-// import * as Tone from 'tone'
+const	synthA = new Tone.FMSynth().toMaster();
+let steps = document.querySelectorAll(".step");
+let playerState = 0;
 
-const synth = new Tone.Synth().toMaster()
-synth.triggerAttackRelease('C4', '8n')
+const changePlayerstate = document.getElementById("play");
+changePlayerstate.addEventListener("click", () =>
+{
+	playerState++;
+	if (playerState == 1)
+	{
+		steps.forEach(steps => 
+		{
+			if (steps.checked)
+			{
+				console.log("Player has started.");
+				synthA.triggerAttackRelease("C2", "16n");
+			}
+		});
 
-document.getElementById("play").addEventListener("click", function() {
-  if (Tone.Transport.state !== 'started') {
-    Tone.Transport.start();
-	Tone.start();	
-  } else {
-    Tone.Transport.stop();
-  }
-	console.log("button pressed");
+	}
+	else if (playerState == 2)
+		console.log("Player is paused.");
+	if (playerState > 1)
+		playerState = 0;
 });
+
+
