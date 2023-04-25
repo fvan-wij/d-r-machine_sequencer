@@ -1,5 +1,5 @@
-const	synthA = new Tone.FMSynth().toMaster();
 let	synths = [];
+
 // Initialize 8 synths, 1 synth for each step.
 const initSynths = (n) =>
 {
@@ -11,28 +11,22 @@ const initSynths = (n) =>
 	return synths;
 };
 
-let steps = document.querySelectorAll(".step");
 
 synths = initSynths(8);
 
-const playStepsInLoop = () =>
+let index = 0;
+const repeat = (time) =>
 {
-	const repeat = (time) =>
-	{
-		let index = 0;
-		steps.forEach((steps, index) => 
-		{
-			let synth = synths[index];
-			if (steps.checked)
-			{
-				synth.triggerAttackRelease("C3", "32n", time);
-			}
-		});
-	    // beat = (beat + 1) % 8;
-	}
-	Tone.Transport.bpm.value = 120;
-	Tone.Transport.scheduleRepeat(repeat, "8n");
-};
+	let step = (index % 8) + 1;
+	let synth = synths[step];
+	const synthInputs = document.querySelector('.synth input:nth-child('+ step +')');
+	if (synthInputs.checked)
+		synth.triggerAttackRelease('C'+ step +'', "16n");
+	index++;
+}
+
+Tone.Transport.scheduleRepeat(repeat, "16n");
+Tone.Transport.bpm.value = 100;
 
 // Start button -> starts the loop
 const start = document.getElementById('play');
@@ -41,8 +35,6 @@ start.addEventListener( 'click', async () =>
 	await Tone.start();
 	console.log("Audio is ready");
 	Tone.Transport.start();
-	playStepsInLoop();
-	// Tone.Transport.bpm.rampTo(120);
 });
 
 // Stop button -> stops the loop
