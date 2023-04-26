@@ -8,8 +8,14 @@
 		<script src="./node_modules/tone/build/Tone.js"></script>
 	</head>
 	<body>
-
-
+		<header>
+			<h1>
+			Web-Sequencer (Work in progress)
+			</h1>
+		</header>
+<div class="interface">
+	
+<div class="stepInterface">
 <!-- Synth sequencer -->
 		<div class="synth">
 			<h3>Synth</h3>
@@ -35,14 +41,78 @@
 			<input class="kick_step" type="checkbox">
 			<input class="kick_step" type="checkbox">
 		</div>
+<!-- Open Hat sequencer -->
+		<div class="oh">
+			<h3>Open Hi-Hat</h3>
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+		</div>
+<!-- Closed Hat sequencer -->
+		<div class="ch">
+			<h3>Closed Hi-Hat</h3>
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+		</div>
+<!-- Snare sequencer	 -->
+		<div class="snare">
+			<h3>Snare</h3>
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+		</div>
 
-<!-- Play/pause and stop button	 -->
-		<div>
+<!-- Clap sequencer	 -->
+		<div class="clap">
+			<h3>Clap</h3>
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+		</div>
+
 			<button id="play">Play/Pause</button>
 			<button id="stop">Stop</button>
+</div>
+
+<!-- Play/pause and stop button	 -->
+		<div class="sliderInterface">
+			<h3>Master</h3>
+			<p>BPM</p>
+			<input type="range" min="1" max="200" class="slider" value="100" id="bpmRange">
+			<p>Volume</p>
+			<input type="range" min="1" max="120" class="slider" value="100" id="volumeRange">
+			<h3>Effects</h3>
+			<p>Drive</p>
+			<input type="range" min="1" max="100" class="slider" value="1" id="driveRange">
+			<p>Reverb</p>
+			<input type="range" min="1" max="100" class="slider" value="1" id="reverbRange">
+			<p>Chorus</p>
+			<input type="range" min="1" max="100" class="slider" value="1" id="chorusRange">
 		</div>
 
 
+</div>
 			<!-- <script src="src/main.js"></script> -->
 			<script src="src/sequencer.js"></script>
 	</body>
