@@ -1,3 +1,29 @@
 body {
 	background-color: green;
 }
+
+.synth_step{
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+
+.kick_step{
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.synth{
+	display: flex;
+}
+
+.kick{
+	display: flex;
+}
+
