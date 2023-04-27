@@ -1,17 +1,38 @@
 body {
 	background-color: #151515;
 	color: white;
+    font-family: 'Manrope', sans-serif;
 }
-
+h1 {
+	font-weight: 700;
+}
 h3 {
 	width: 150px;
 	top: 0;
 	left: 0;
+	font-weight: 400;
 }
 
 header {
 	display: flex;
 	justify-content: center;
+}
+
+button {
+	width: 8em;
+	height: 2em;
+	color: white;
+	border: none;
+	border-radius: 0.5em;
+}
+
+#play {
+	background-color: lightgreen;
+	width: 8em;
+	color: black;
+}
+#stop {
+	background-color: red;
 }
 
 .interface {
@@ -23,6 +44,7 @@ header {
 	background-color:#2c2c2c;
 	padding-top: 3em;
 	padding-bottom: 3em;
+	border-radius: 1em;
 }
 
 input{
@@ -41,8 +63,12 @@ input:nth-child(6) {
 }
 
 .sliderInterface {
-	margin-left: 100px;
+	margin-left: 2em;
 	right: 0;
+	padding-left: 1em;
+	padding-right: 1em;
+	background-color: #353535;
+	border-radius: 1em;
 }
 
 .synth_step {
