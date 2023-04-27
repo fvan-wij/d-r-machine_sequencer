@@ -17,10 +17,23 @@
 			</h1>
 		</header>
 <div class="interface">
-	
+	<div id="toggle-btn">
+		<!-- <button id="toggle-synth">Synth</button>	 -->
+		<!-- <button id="toggle-kick">Kick</button>	 -->
+		<!-- <button id="toggle-oh">Synth</button>	 -->
+		<!-- <button id="toggle-ch">Synth</button>	 -->
+		<!-- <button id="toggle-snare">Synth</button>	 -->
+		<!-- <button id="toggle-clap">Synth</button>	 -->
+		<button id="toggle">Synth</button>	
+		<button id="toggle">Kick</button>	
+		<button id="toggle">Synth</button>	
+		<button id="toggle">Synth</button>	
+		<button id="toggle">Synth</button>	
+		<button id="toggle">Synth</button>	
+	</div>
 <div class="stepInterface">
 <!-- Synth sequencer -->
-		<div class="synth">
+		<div class="synth" id="synth-module">
 			<h3>Synth</h3>
 			<input class="synth_step" type="checkbox">
 			<input class="synth_step" type="checkbox">
@@ -104,19 +117,20 @@
 			<p>BPM</p>
 			<input type="range" min="1" max="200" class="slider" value="100" id="bpmRange">
 			<p>Volume</p>
-			<input type="range" min="1" max="120" class="slider" value="100" id="volumeRange">
+			<input type="range" min="-50" max="0" class="slider" value="-20" id="volumeRange">
 			<h3>Effects</h3>
 			<p>Drive</p>
-			<input type="range" min="1" max="100" class="slider" value="1" id="driveRange">
+			<input type="range" min="0" max="100" class="slider" value="0" id="driveRange">
 			<p>Reverb</p>
-			<input type="range" min="1" max="100" class="slider" value="1" id="reverbRange">
+			<input type="range" min="0.01" max="20" class="slider" value="0" id="reverbRange">
 			<p>Chorus</p>
-			<input type="range" min="1" max="100" class="slider" value="1" id="chorusRange">
+			<input type="range" min="0" max="50" class="slider" value="0" id="chorusRange">
 		</div>
 
 
 </div>
 			<!-- <script src="src/main.js"></script> -->
 			<script src="src/sequencer.js"></script>
+			<script src="src/interface.js"></script>
 	</body>
 </html>

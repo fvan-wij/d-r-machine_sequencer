@@ -1,6 +1,3 @@
-//Master volume 
-var vol = new Tone.Volume(-12);
-
 //Initializing synth and drum samples
 const synth = new Tone.Synth().toDestination();
 const kick = new Tone.Player('../data/samples/kick.wav').toDestination();
@@ -8,6 +5,11 @@ const oh = new Tone.Player('../data/samples/oh.wav').toDestination();
 const ch = new Tone.Player('../data/samples/ch.wav').toDestination();
 const snare	= new Tone.Player('../data/samples/snare.wav').toDestination();
 const clap = new Tone.Player('../data/samples/clap.wav').toDestination();
+
+//FX
+const distortion = new Tone.Distortion(0).toDestination();
+const reverb = new Tone.Reverb(1).toDestination();
+const chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination();
 
 //HTML QuerySelectors
 const synthSteps = document.querySelectorAll('.synth_step');
@@ -22,10 +24,10 @@ var checkboxes = document.querySelectorAll('input');
 const stop = document.getElementById('stop');
 const start = document.getElementById('play');
 var bpmSlider = document.getElementById('bpmRange');
-var volumeSlider = document.getElementById('bpmRange');
-var driveSlider = document.getElementById('bpmRange');
-var reverbSlider = document.getElementById('bpmRange');
-var chorusSlider = document.getElementById('bpmRange');
+var volumeSlider = document.getElementById('volumeRange');
+var driveSlider = document.getElementById('driveRange');
+var reverbSlider = document.getElementById('reverbRange');
+var chorusSlider = document.getElementById('chorusRange');
 
 //Global variables
 let synthStepArray = [];
@@ -126,7 +128,6 @@ const sequenceSynthNotes = () =>
 	const seq = new Tone.Sequence((time, note) => {
 		synth.triggerAttackRelease(note, '32n', time);
 	}, synthStepArray).start(0);
-
 };
 
 const sequenceKickNotes = () =>
@@ -134,7 +135,6 @@ const sequenceKickNotes = () =>
 	const seq = new Tone.Sequence((time, note) => {
 		kick.start();
 	}, kickStepArray).start(0);
-
 };
 
 const sequenceOhNotes = () =>
@@ -142,7 +142,6 @@ const sequenceOhNotes = () =>
 	const seq = new Tone.Sequence((time, note) => {
 		oh.start();
 	}, ohStepArray).start(0);
-
 };
 
 const sequenceChNotes = () =>
@@ -150,7 +149,6 @@ const sequenceChNotes = () =>
 	const seq = new Tone.Sequence((time, note) => {
 		ch.start();
 	}, chStepArray).start(0);
-
 };
 
 const sequenceSnareNotes = () =>
@@ -158,7 +156,6 @@ const sequenceSnareNotes = () =>
 	const seq = new Tone.Sequence((time, note) => {
 		snare.start();
 	}, snareStepArray).start(0);
-
 };
 
 const sequenceClapNotes = () =>
@@ -166,7 +163,6 @@ const sequenceClapNotes = () =>
 	const seq = new Tone.Sequence((time, note) => {
 		clap.start();
 	}, clapStepArray).start(0);
-
 };
 
 //Updates the sequence as soon as a checkbox change is detected
@@ -188,7 +184,6 @@ checkboxes.forEach(function(checkbox)
 	  	sequenceChNotes();
 		sequenceSnareNotes();
 		sequenceClapNotes();
-	  	// console.log('synthStepArray:'+ synthStepArray + '');
 	})
 });
 
@@ -198,16 +193,58 @@ bpmSlider.oninput = function()
 {
 	Tone.Transport.bpm.value = this.value;
 }
-// volumeSlider.oninput = function() 
-// {
-// 	Tone.Destination.chain(vol);
-// }
+//Volume
+volumeSlider.addEventListener('input', () =>
+{
+	synth.volume.value = volumeSlider.value;
+	kick.volume.value = volumeSlider.value;
+	oh.volume.value = volumeSlider.value;
+	ch.volume.value = volumeSlider.value;
+	snare.volume.value = volumeSlider.value;
+	clap.volume.value = volumeSlider.value;
+});
+//Distortion
+synth.connect(distortion);
+kick.connect(distortion);
+oh.connect(distortion);
+ch.connect(distortion);
+snare.connect(distortion);
+clap.connect(distortion);
+driveSlider.addEventListener('input', () =>
+{
+distortion.distortion = driveSlider.value;
+});
+//Reverb
+synth.connect(reverb);
+kick.connect(reverb);
+oh.connect(reverb);
+ch.connect(reverb);
+snare.connect(reverb);
+clap.connect(reverb);
+reverbSlider.addEventListener('input', () =>
+{
+reverb.decay = reverbSlider.value;
+});
+
+//Chorus
+synth.connect(chorus);
+kick.connect(chorus);
+oh.connect(chorus);
+ch.connect(chorus);
+snare.connect(chorus);
+clap.connect(chorus);
+chorusSlider.addEventListener('input', () =>
+{
+chorus.depth = chorusSlider.value;
+chorus.wet = chorusSlider.value;
+});
 
 //Play or Pause the sequencer
 start.addEventListener('click', async () =>
 {
-	await Tone.start();
-	if (Tone.Transport.state === 'started')
+	if (!Tone.start())
+		await Tone.start();
+	else if (Tone.Transport.state === 'started')
 	{
 		console.log("Paused");
 		Tone.Transport.pause();
@@ -219,6 +256,7 @@ start.addEventListener('click', async () =>
 	}
 	else if (Tone.Transport.state === 'stopped')
 	{
+
 		console.log("Started");
 		Tone.Transport.start();
 	}
