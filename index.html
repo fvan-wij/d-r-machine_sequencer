@@ -17,37 +17,93 @@
 			</h1>
 		</header>
 <div class="interface">
-	<div id="toggle-btn">
-		<!-- <button id="toggle-synth">Synth</button>	 -->
-		<!-- <button id="toggle-kick">Kick</button>	 -->
-		<!-- <button id="toggle-oh">Synth</button>	 -->
-		<!-- <button id="toggle-ch">Synth</button>	 -->
-		<!-- <button id="toggle-snare">Synth</button>	 -->
-		<!-- <button id="toggle-clap">Synth</button>	 -->
-		<button id="toggle">Synth</button>	
-		<button id="toggle">Kick</button>	
-		<button id="toggle">Synth</button>	
-		<button id="toggle">Synth</button>	
-		<button id="toggle">Synth</button>	
-		<button id="toggle">Synth</button>	
+
+<div id="interface-fx">
+<!-- FX buttons -->
+	<div id="fx-btns">
+		<button class="toggle" data-target="synth-fx">SH</button>	
+		<button class="toggle" data-target="kick-fx">BD</button>	
+		<button class="toggle" data-target="oh-fx">OH</button>	
+		<button class="toggle" data-target="ch-fx">CH</button>	
+		<button class="toggle" data-target="snare-fx">SD</button>	
+		<button class="toggle" data-target="clap-fx">CP</button>	
 	</div>
+
+<!-- FX sections -->
+	<div class="toggle-div" id="synth-fx">
+			<h3>Parameters</h3>
+			<p>Frequency</p>		
+			<input type="range" min="0" max="5" class="slider" value="4" step="1" id="Frequency">
+			<p>Attack</p>
+			<input type="range" min="0" max="1" class="slider" value="0" step="0.01" id="Attack">
+			<p>Decay</p>
+			<input type="range" min="0" max="5" class="slider" value="1" step="0.01" id="Decay">
+			<p>Sustain</p>						
+			<input type="range" min="0" max="1" class="slider" value="0" step="0.01" id="Sustain">
+			<p>Release</p>			
+			<input type="range" min="0" max="5" class="slider" value="1" step="0.01" id="Release">
+	</div>
+	<div class="toggle-div" id="kick-fx">
+			<h3>Parameters</h3>
+			<p>Pitch</p>
+			<input type="range" min="0.001" max="4.001" class="slider" step="0.001" value="1" id="kickPitch">
+	</div>
+	<div class="toggle-div" id="oh-fx">
+			<h3>Parameters</h3>
+			<p>Pitch</p>
+			<input type="range" min="0.001" max="3.001" class="slider" step="0.001" value="1" id="ohPitch">
+	</div>
+	<div class="toggle-div" id="ch-fx">
+			<h3>Parameters</h3>
+			<p>Pitch</p>
+			<input type="range" min="0.001" max="3.001" class="slider" step="0.001" value="1" id="chPitch">
+	</div>
+	<div class="toggle-div" id="snare-fx">
+			<h3>Parameters</h3>
+			<p>Pitch</p>
+			<input type="range" min="0.001" max="2.001" class="slider" step="0.001" value="1" id="snarePitch">
+	</div>
+	<div class="toggle-div" id="clap-fx">
+			<h3>Parameters</h3>
+			<p>Pitch</p>
+			<input type="range" min="0.001" max="2.001" class="slider" step="0.001" value="1" id="clapPitch">
+	</div>
+		
+</div>
+
 <div class="stepInterface">
 <!-- Synth sequencer -->
 		<div class="synth" id="synth-module">
-			<h3>Synth</h3>
-			<input class="synth_step" type="checkbox">
-			<input class="synth_step" type="checkbox">
-			<input class="synth_step" type="checkbox">
-			<input class="synth_step" type="checkbox">
-			<input class="synth_step" type="checkbox">
-			<input class="synth_step" type="checkbox">
-			<input class="synth_step" type="checkbox">
-			<input class="synth_step" type="checkbox">
+			<h3>SH</h3>
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
+				<input class="synth_step" type="checkbox">
 		</div>
 
 <!-- Kick sequencer -->
 		<div class="kick">
-			<h3>Kick</h3>
+			<h3>BD</h3>
+			<input class="kick_step" type="checkbox">
+			<input class="kick_step" type="checkbox">
+			<input class="kick_step" type="checkbox">
+			<input class="kick_step" type="checkbox">
+			<input class="kick_step" type="checkbox">
+			<input class="kick_step" type="checkbox">
+			<input class="kick_step" type="checkbox">
+			<input class="kick_step" type="checkbox">
 			<input class="kick_step" type="checkbox">
 			<input class="kick_step" type="checkbox">
 			<input class="kick_step" type="checkbox">
@@ -59,7 +115,15 @@
 		</div>
 <!-- Open Hat sequencer -->
 		<div class="oh">
-			<h3>Open Hi-Hat</h3>
+			<h3>OH</h3>
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
+			<input class="oh_step" type="checkbox">
 			<input class="oh_step" type="checkbox">
 			<input class="oh_step" type="checkbox">
 			<input class="oh_step" type="checkbox">
@@ -71,7 +135,15 @@
 		</div>
 <!-- Closed Hat sequencer -->
 		<div class="ch">
-			<h3>Closed Hi-Hat</h3>
+			<h3>CH</h3>
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
+			<input class="ch_step" type="checkbox">
 			<input class="ch_step" type="checkbox">
 			<input class="ch_step" type="checkbox">
 			<input class="ch_step" type="checkbox">
@@ -83,7 +155,15 @@
 		</div>
 <!-- Snare sequencer	 -->
 		<div class="snare">
-			<h3>Snare</h3>
+			<h3>SD</h3>
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
+			<input class="snare_step" type="checkbox">
 			<input class="snare_step" type="checkbox">
 			<input class="snare_step" type="checkbox">
 			<input class="snare_step" type="checkbox">
@@ -96,7 +176,15 @@
 
 <!-- Clap sequencer	 -->
 		<div class="clap">
-			<h3>Clap</h3>
+			<h3>CP</h3>
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
+			<input class="clap_step" type="checkbox">
 			<input class="clap_step" type="checkbox">
 			<input class="clap_step" type="checkbox">
 			<input class="clap_step" type="checkbox">
@@ -106,21 +194,22 @@
 			<input class="clap_step" type="checkbox">
 			<input class="clap_step" type="checkbox">
 		</div>
-
-		<button id="play"> |> </button>
-			<button id="stop">[]</button>
-</div>
+		<div class="playback-btn">
+			<button id="play">Play</button>
+		</div>	
+		</div>
 
 <!-- Play/pause and stop button	 -->
 		<div class="sliderInterface">
 			<h3>Master</h3>
-			<p>BPM</p>
+			<p>BPM: <output id="output"></output></p>
+			<!-- <output id="output"></output> -->
 			<input type="range" min="1" max="200" class="slider" value="100" id="bpmRange">
 			<p>Volume</p>
-			<input type="range" min="-50" max="0" class="slider" value="-20" id="volumeRange">
+			<input type="range" min="-50" max="0" class="slider" value="0" id="volumeRange">
 			<h3>Effects</h3>
 			<p>Drive</p>
-			<input type="range" min="0" max="100" class="slider" value="0" id="driveRange">
+			<input type="range" min="0.01" max="50" class="slider" value="0.01" id="driveRange">
 			<p>Reverb</p>
 			<input type="range" min="0.01" max="20" class="slider" value="0" id="reverbRange">
 			<p>Chorus</p>
@@ -132,5 +221,7 @@
 			<!-- <script src="src/main.js"></script> -->
 			<script src="src/sequencer.js"></script>
 			<script src="src/interface.js"></script>
+			<script src="src/timeline.js"></script>
+			<script src="src/fx.js"></script>
 	</body>
 </html>

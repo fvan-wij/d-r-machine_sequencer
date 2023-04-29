@@ -36,12 +36,12 @@ let ohStepArray = [];
 let chStepArray = [];
 let snareStepArray = [];
 let clapStepArray = [];
-
+var now = Tone.now();
 //Fills the synthStepArray for each checkbox that is ticked
 const fillSynthSteps = () => 
 {
 	synthStepArray = [];
-	let note = 'F4';
+	let note = 'F'+synthPitchSlider.value+'';
 	synthSteps.forEach(synthSteps => {
 
 		if (synthSteps.checked)
@@ -123,77 +123,53 @@ const fillClapSteps = () =>
 };
 
 //Sequences the notes as positioned in the synthStepArray
-const sequenceSynthNotes = () =>
-{
-	const seq = new Tone.Sequence((time, note) => {
+var seqSynth = new Tone.Sequence((time, note) => {
 		synth.triggerAttackRelease(note, '32n', time);
-	}, synthStepArray).start(0);
-};
+	console.log(time);
+}, synthStepArray);
+var seqKick = new Tone.Sequence((time, note) => {
+	kick.start(time);
+}, kickStepArray);
+var seqOh = new Tone.Sequence((time, note) => {
+	oh.start(time);
+}, ohStepArray);
+var seqCh = new Tone.Sequence((time, note) => {
+	ch.start(time);
+}, chStepArray);
+var seqSnare = new Tone.Sequence((time, note) => {
+	snare.start(time);
+}, snareStepArray);
+var seqClap = new Tone.Sequence((time, note) => {
+	clap.start(time);
+}, clapStepArray);
 
-const sequenceKickNotes = () =>
-{
-	const seq = new Tone.Sequence((time, note) => {
-		kick.start();
-	}, kickStepArray).start(0);
-};
-
-const sequenceOhNotes = () =>
-{
-	const seq = new Tone.Sequence((time, note) => {
-		oh.start();
-	}, ohStepArray).start(0);
-};
-
-const sequenceChNotes = () =>
-{
-	const seq = new Tone.Sequence((time, note) => {
-		ch.start();
-	}, chStepArray).start(0);
-};
-
-const sequenceSnareNotes = () =>
-{
-	const seq = new Tone.Sequence((time, note) => {
-		snare.start();
-	}, snareStepArray).start(0);
-};
-
-const sequenceClapNotes = () =>
-{
-	const seq = new Tone.Sequence((time, note) => {
-		clap.start();
-	}, clapStepArray).start(0);
-};
+var arrayOfStepArrays = [synthStepArray, kickStepArray, ohStepArray, chStepArray, snareStepArray, clapStepArray];
+var arrayOfFillFunctions = [fillSynthSteps, fillKickSteps, fillOhSteps, fillChSteps, fillSnareSteps, fillClapSteps];
+var arrayOfSequences = [seqSynth, seqKick, seqOh, seqCh, seqSnare, seqClap];
 
 //Updates the sequence as soon as a checkbox change is detected
 checkboxes.forEach(function(checkbox) 
 {
 	checkbox.addEventListener('change', function() 
 	{
-
-   		synthStepArray = fillSynthSteps(); 
-	  	kickStepArray = fillKickSteps();
-	  	ohStepArray = fillOhSteps();
-	  	chStepArray = fillChSteps();
-		snareStepArray = fillSnareSteps();
-		clapStepArray = fillClapSteps();
-
-	  	sequenceSynthNotes();
-	  	sequenceKickNotes();
-	  	sequenceOhNotes();
-	  	sequenceChNotes();
-		sequenceSnareNotes();
-		sequenceClapNotes();
+		for (let i = 0; i < arrayOfStepArrays.length; i++) 
+		{
+			arrayOfStepArrays[i] = arrayOfFillFunctions[i]();
+			arrayOfSequences[i].events = arrayOfStepArrays[i];
+		}	
 	})
 });
 
 //Sliders and settings 
-// TO DO: FIX VOLUME SLIDER AND FX SLIDERS
+document.getElementById('output').innerHTML = bpmSlider.value;
 bpmSlider.oninput = function() 
 {
 	Tone.Transport.bpm.value = this.value;
+	
+	document.getElementById('output').innerHTML = this.value;
 }
 //Volume
+Tone.Master.volume.value = -13;
 volumeSlider.addEventListener('input', () =>
 {
 	synth.volume.value = volumeSlider.value;
@@ -239,6 +215,26 @@ chorus.depth = chorusSlider.value;
 chorus.wet = chorusSlider.value;
 });
 
+const startSeq = () =>
+{
+	seqSynth.start(0);
+	seqKick.start(0);
+	seqOh.start(0);
+	seqCh.start(0);
+	seqSnare.start(0);
+	seqClap.start(0);
+};
+
+const stopSeq = () =>
+{
+	seqSynth.stop(0);
+	seqKick.stop(0);
+	seqOh.stop(0);
+	seqCh.stop(0);
+	seqSnare.stop(0);
+	seqClap.stop(0);
+};
+
 //Play or Pause the sequencer
 start.addEventListener('click', async () =>
 {
@@ -246,27 +242,22 @@ start.addEventListener('click', async () =>
 		await Tone.start();
 	else if (Tone.Transport.state === 'started')
 	{
-		console.log("Paused");
-		Tone.Transport.pause();
-	}
-	else if (Tone.Transport.state === 'paused')
-	{
-		console.log("Started");
-		Tone.Transport.start();
+		console.log("Stopped");
+		Tone.Transport.stop();
+		stopSeq();
+		start.classList.remove('focus');
 	}
 	else if (Tone.Transport.state === 'stopped')
 	{
-
 		console.log("Started");
 		Tone.Transport.start();
+		startSeq();
+		start.classList.add('focus');
 	}
-});
 
-//Stop the sequencer
-stop.addEventListener('click', async () =>
-{
-	if (Tone.Transport.state === 'started' || Tone.Transport.state === 'paused')
-		Tone.Transport.stop();
-	console.log("Stopped");
+	if (start.innerHTML === "Play")
+		start.innerHTML = 'Stop';
+	else
+		start.innerHTML = 'Play';
 });
 
