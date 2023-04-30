@@ -78,6 +78,14 @@ button {
 .playback-btn:hover{
 	opacity: 1;
 }
+#timelineBar{
+	margin-left: 5.20em;
+	margin-bottom: 0.5em;
+	width: 1%;
+	height: 10px;
+	background-color: var(--focus);
+	border-radius: 1em;
+}
 
 /* Main container for the interface */
 .interface {

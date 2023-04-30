@@ -6,6 +6,7 @@ const tl_chSteps = document.querySelectorAll('.ch_step');
 const tl_snareSteps = document.querySelectorAll('.snare_step');
 const tl_clapSteps = document.querySelectorAll('.clap_step');
 let tl_stepArray = [tl_synthSteps, tl_kickSteps, tl_ohSteps, tl_chSteps, tl_snareSteps, tl_clapSteps];
+const timelineBar = document.getElementById('timelineBar');
 
 const clearHighlight = (tl_steps) =>
 {
@@ -27,9 +28,12 @@ Tone.Transport.scheduleRepeat(time => {
 	tl_chSteps[stepIndex].classList.add('highlight');
 	tl_snareSteps[stepIndex].classList.add('highlight');
 	tl_clapSteps[stepIndex].classList.add('highlight');
+	timelineBar.style.width = (99 / 16) * stepIndex + "%";
 	totalSteps++;
 }, "8n");
 
 document.getElementById('play').onclick = function() {
 	totalSteps = 0;
 }
+
+
