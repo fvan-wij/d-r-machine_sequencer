@@ -200,9 +200,9 @@ start.addEventListener('click', async () =>
 		start.classList.add('focus');
 	}
 
-	if (start.innerHTML === "Play")
-		start.innerHTML = "Stop";
-	else if (start.innerHTML === "Stop")
-		start.innerHTML = "Play";
+	if (start.innerHTML === "Play.")
+		start.innerHTML = "Stop.";
+	else if (start.innerHTML === "Stop.")
+		start.innerHTML = "Play.";
 });
 
