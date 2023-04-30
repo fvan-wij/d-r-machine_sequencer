@@ -1,3 +1,4 @@
+/* CSS Variables */
 :root {
   --bg: #182CD4;
   --fg: #EEEEEE; 
@@ -20,10 +21,8 @@ h3 {
 	top: 0;
 	left: 0;
 	font-weight: 700;
-}
-.kick > h3, .synth > h3, .oh > h3, .ch > h3, .snare > h3, .clap > h3{
-	color: white;
-	font-weight: 400;
+	font-size: 1.25em;
+	white-space: nowrap;
 }
 
 header {
@@ -37,8 +36,8 @@ button {
 	border: none;
 	border-radius: 0.2em;
   	transition-duration: 0.2s;
-	/* background-color: beige; */
 }
+/* When button is pressed, it becomes focused and the style is being applied accordingly */
 .focus{
 	background-color: var(--bg);
 	width: 5.15rem;
@@ -46,33 +45,24 @@ button {
 	font-weight: 700;
   	transition-duration: 0.2s;
 }
-
-
-#interface-fx{
-	display: flex;
-	justify-content: space-between;
-	background-color: var(--fg);
-	border-radius: 1em;
-	padding: 1em;
-}
+/* Styling for the FX buttons on the lefthand side */
 #fx-btns {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 }
-
+/* Once an FX button is being pressed, the FX panel gets hidden */
 .toggle-div{
 	display: none;
 }
-
+/* Styling of the FX panel once an FX button is pressed/focused */
 .show{
 	display: flex;
 	padding-left: 2.5em;
-	/* align-items: flex-end; */
 	justify-content: flex-start;
 	flex-direction: column;
 }
-
+/* Styling of the playback button */
 .playback-btn{
 	display: flex;
 	margin-left: 4.65em;
@@ -89,29 +79,25 @@ button {
 	opacity: 1;
 }
 
+/* Main container for the interface */
 .interface {
 	display: flex;
 	justify-content: space-evenly;
 	background-color: var(--bg);
 	padding-top: 3em;
 	padding-bottom: 3em;
+	/* border-left: 6px solid var(--focus); */
+}
+
+/* FX section container */
+#interface-fx{
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--fg);
 	border-radius: 1em;
-	/* box-shadow: 14px 8px 20px 5px var(--focus); */
+	padding: 1em;
 }
-
-input{
-	/* filter: invert(20%); */
-	opacity: 0.9;
-}
-input[type="checkbox"]
-{
-	filter: invert(10%);
-}
-input[type="checkbox"]:nth-child(2), input[type="checkbox"]:nth-child(6), input[type="checkbox"]:nth-child(10), input[type="checkbox"]:nth-child(14) {
-	filter: invert(0%);
-	/* color: black; */
-}
-
+/* Styling for the master FX sliders to the right */
 .sliderInterface {
 	right: 0;
 	padding-left: 1em;
@@ -119,6 +105,32 @@ input[type="checkbox"]:nth-child(2), input[type="checkbox"]:nth-child(6), input[
 	background-color: var(--fg);
 	border-radius: 1em;
 }
+
+/* Styling for the name of each hit left to the actual sequence steps. */
+.kick > h3, .synth > h3, .oh > h3, .ch > h3, .snare > h3, .clap > h3{
+	color: white;
+	font-weight: 400;
+}
+/* Horizontal flex positioning for the step sequences */
+.synth, .kick, .oh, .ch, .snare, .clap {
+	display: flex;
+	align-items: center;
+}
+/* Input have a slight decrease in opacity so that the hover state indicates focus/contrast */
+input{
+	opacity: 0.9;
+}
+/* Step sequences that are not on the beat are slightly inverted in terms of color */
+input[type="checkbox"]
+{
+	filter: invert(10%);
+}
+/* Step sequences that are ON the beat are brighter */
+input[type="checkbox"]:nth-child(2), input[type="checkbox"]:nth-child(6), input[type="checkbox"]:nth-child(10), input[type="checkbox"]:nth-child(14) {
+	filter: invert(0%);
+	/* color: black; */
+}
+/* Styling for the checkboxes/step sequences */
 input[type="checkbox"] {
   appearance: none;
   background-color: #fff;
@@ -149,9 +161,9 @@ input[type="checkbox"]:checked::before {
 }
 input[type="checkbox"].highlight::before{
   box-shadow: inset 0em 1em var(--focus);
-
 }
 
+/* Styling for the sliders */
 input[type="range"]{
 	opacity: 0.8;
 }
@@ -169,72 +181,5 @@ input[type="range"]::-moz-range-thumb {
   border-width: 0.2em;
 }
 
-.synth_step {
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 20px;
-  background-color: #eee;
-}
-
-.kick_step {
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-.oh_step {
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-.ch_step {
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-.snare_step {
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-.clap_step {
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
-.synth{
-	display: flex;
-	align-items: center;
-}
-.kick{
-	display: flex;
-	align-items: center;
-}
-.oh{
-	display: flex;
-	align-items: center;
-}
-.ch{
-	display: flex;
-	align-items: center;
-}
-.snare{
-	display: flex;
-	align-items: center;
-}
-.clap{
-	display: flex;
-	align-items: center;
-}
 
 

@@ -33,14 +33,16 @@ fxToggleButtons.forEach(fxToggleButtons =>
 	});
 });
 
-var playStopBtn = document.getElementById('play');
-playStopBtn.addEventListener('click', () =>
-{
-	if (playStopBtn.innerHTML == 'Play')
-	{
-		playStopBtn.innerHTML = 'Stop';
-		console.log("JO");
-	}
-	else
-		playStopBtn.innerHTML = 'Play';
-});
+// var playStopBtn = document.getElementById('play');
+// playStopBtn.addEventListener('click', () =>
+// {
+// 	if (playStopBtn.innerHTML == 'Play')
+// 	{
+// 		playStopBtn.innerHTML = 'Stop';
+// 		console.log("JO");
+// 	}
+// 	else
+// 		playStopBtn.innerHTML = 'Play';
+// });
+
+
