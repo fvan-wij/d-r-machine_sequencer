@@ -6,6 +6,10 @@
   --focus: #C4FA6F;
 }
 
+*:focus {
+	outline: none;
+}
+
 body {
 	background-color: var(--bg);
 	color: var(--mg);
@@ -67,22 +71,36 @@ button {
 .playback-btn{
 	display: flex;
 	margin-left: 4.65em;
+	margin-right: 1em;
 	padding: 0.15em; 
-	justify-content: flex-start;
+	justify-content: space-between;
 	opacity: 0.9;
 }
-#play {
+#play{
 	color: var(--focus);
 	font-size: 2em;
 	background-color: var(--bg);
+	cursor: pointer;
 }
-.playback-btn:hover{
+#clear{
+	color: var(--focus);
+	font-size: 2em;
+	background-color: var(--bg);
+	cursor: pointer;
+}
+.temp {
+	color: red;
+	transition-duration: 2s;
+}
+
+
+#play:hover, #clear:hover{
 	opacity: 1;
 }
 #timelineBar{
 	margin-left: 5.20em;
 	margin-bottom: 0.5em;
-	width: 1%;
+	width: 0%;
 	height: 10px;
 	background-color: var(--focus);
 	border-radius: 1em;

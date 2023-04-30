@@ -33,16 +33,31 @@ fxToggleButtons.forEach(fxToggleButtons =>
 	});
 });
 
-// var playStopBtn = document.getElementById('play');
-// playStopBtn.addEventListener('click', () =>
-// {
-// 	if (playStopBtn.innerHTML == 'Play')
-// 	{
-// 		playStopBtn.innerHTML = 'Stop';
-// 		console.log("JO");
-// 	}
-// 	else
-// 		playStopBtn.innerHTML = 'Play';
-// });
+const clearSequences = () =>
+{
+	checkboxes.forEach(checkboxes =>
+	{
+			checkboxes.checked = false;
+	});
+	for (let i = 0; i < arrayOfStepArrays.length; i++)
+	{
+		for (let j = 0; j < arrayOfStepArrays[i].length; j++)
+		{
+			arrayOfStepArrays[i][j] = null;
+		}	
+	}
+		
+};
 
+const clearB = document.getElementById('clear');
+clearB.addEventListener('click', () =>
+{
+		clearSequences();
+		updateSequences();
+		stopSeq();
+		start.innerHTML = "Play.";
+		start.classList.remove('focus');
+	clearB.style.color = "red";
+		console.log("Cleared!");
+});
 

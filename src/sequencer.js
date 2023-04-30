@@ -125,7 +125,6 @@ const fillClapSteps = () =>
 //Sequences the notes as positioned in the synthStepArray
 var seqSynth = new Tone.Sequence((time, note) => {
 		synth.triggerAttackRelease(note, '32n', time);
-	console.log(time);
 }, synthStepArray);
 var seqKick = new Tone.Sequence((time, note) => {
 	kick.start(time);
@@ -147,31 +146,42 @@ var arrayOfStepArrays = [synthStepArray, kickStepArray, ohStepArray, chStepArray
 var arrayOfFillFunctions = [fillSynthSteps, fillKickSteps, fillOhSteps, fillChSteps, fillSnareSteps, fillClapSteps];
 var arrayOfSequences = [seqSynth, seqKick, seqOh, seqCh, seqSnare, seqClap];
 
+//Updates the sequence
+var updateSequences = () =>
+{
+		for (let i = 0; i < arrayOfStepArrays.length; i++) 
+		{
+			arrayOfStepArrays[i] = arrayOfFillFunctions[i]();
+			arrayOfSequences[i].events = arrayOfStepArrays[i];
+		}
+};
+
 //Updates the sequence as soon as a checkbox change is detected
 checkboxes.forEach(function(checkbox) 
 {
 	checkbox.addEventListener('change', function() 
 	{
-		for (let i = 0; i < arrayOfStepArrays.length; i++) 
-		{
-			arrayOfStepArrays[i] = arrayOfFillFunctions[i]();
-			arrayOfSequences[i].events = arrayOfStepArrays[i];
-		}	
+		updateSequences();
 	})
 });
 
+
 const startSeq = () =>
 {
+	Tone.Transport.start();
 	seqSynth.start(0);
 	seqKick.start(0);
 	seqOh.start(0);
 	seqCh.start(0);
 	seqSnare.start(0);
 	seqClap.start(0);
+	clearB.style.color = "var(--focus)";
 };
 
 const stopSeq = () =>
 {
+	Tone.Transport.stop();
+	timelineBar.style.width = "0%";
 	seqSynth.stop(0);
 	seqKick.stop(0);
 	seqOh.stop(0);
@@ -181,28 +191,54 @@ const stopSeq = () =>
 };
 
 //Play or Pause the sequencer
-start.addEventListener('click', async () =>
+const playbackLoop = async () =>
 {
+	totalSteps = 0;
 	if (!Tone.start())
 		await Tone.start();
 	else if (Tone.Transport.state === 'started')
 	{
 		console.log("Stopped");
-		Tone.Transport.stop();
 		stopSeq();
 		start.classList.remove('focus');
 	}
 	else if (Tone.Transport.state === 'stopped')
 	{
 		console.log("Started");
-		Tone.Transport.start();
 		startSeq();
 		start.classList.add('focus');
 	}
+};
 
+// Changes innerHTML from Play. to Stop.
+const changePlaybackButton = () =>
+{
 	if (start.innerHTML === "Play.")
 		start.innerHTML = "Stop.";
 	else if (start.innerHTML === "Stop.")
 		start.innerHTML = "Play.";
+};
+
+start.addEventListener('click', async () =>
+{
+	playbackLoop();
+	changePlaybackButton();
 });
+
+// Start or stop when the user presses spacebar
+document.addEventListener('keydown', () =>
+{
+	if (event.code == 'Space' )
+	{
+		event.preventDefault();
+		playbackLoop();
+		changePlaybackButton();
+	} else if (event.code == 'Escape')
+	{
+		stopSeq();
+		start.innerHTML = "Play.";
+		start.classList.remove('focus');
+	}
+});
+
 

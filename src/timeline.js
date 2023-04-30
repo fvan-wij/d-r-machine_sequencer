@@ -32,8 +32,3 @@ Tone.Transport.scheduleRepeat(time => {
 	totalSteps++;
 }, "8n");
 
-document.getElementById('play').onclick = function() {
-	totalSteps = 0;
-}
-
-
