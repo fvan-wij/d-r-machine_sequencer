@@ -256,8 +256,8 @@ start.addEventListener('click', async () =>
 	}
 
 	if (start.innerHTML === "Play")
-		start.innerHTML = 'Stop';
-	else
-		start.innerHTML = 'Play';
+		start.innerHTML = "Stop";
+	else if (start.innerHTML === "Stop")
+		start.innerHTML = "Play";
 });
 

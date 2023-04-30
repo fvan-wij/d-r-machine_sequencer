@@ -1,23 +1,28 @@
 :root {
-  --bg: #1f1f1f;
-  --fg: #353535; 
-  --mg: #2c2c2c;
-  --focus: blue;
+  --bg: #182CD4;
+  --fg: #EEEEEE; 
+  --mg: #3A3F47;
+  --focus: #C4FA6F;
 }
 
 body {
 	background-color: var(--bg);
-	color: white;
+	color: var(--mg);
     font-family: 'Manrope', sans-serif;
 }
 h1 {
 	font-weight: 700;
 	font-size: 4em;
+	color: var(--focus);
 }
 h3 {
 	width: 4em;
 	top: 0;
 	left: 0;
+	font-weight: 700;
+}
+.kick > h3, .synth > h3, .oh > h3, .ch > h3, .snare > h3, .clap > h3{
+	color: white;
 	font-weight: 400;
 }
 
@@ -31,12 +36,17 @@ button {
 	height: 4.15rem;
 	border: none;
 	border-radius: 0.2em;
+  	transition-duration: 0.2s;
 	/* background-color: beige; */
 }
 .focus{
-	background-color: var(--focus);
-	color: white;
+	background-color: var(--bg);
+	width: 5.15rem;
+	color: var(--focus);
+	font-weight: 700;
+  	transition-duration: 0.2s;
 }
+
 
 #interface-fx{
 	display: flex;
@@ -70,6 +80,11 @@ button {
 	justify-content: flex-start;
 	opacity: 0.9;
 }
+#play {
+	color: var(--focus);
+	font-size: 2em;
+	background-color: var(--bg);
+}
 .playback-btn:hover{
 	opacity: 1;
 }
@@ -77,16 +92,21 @@ button {
 .interface {
 	display: flex;
 	justify-content: space-evenly;
-	background-color: var(--mg);
+	background-color: var(--bg);
 	padding-top: 3em;
 	padding-bottom: 3em;
 	border-radius: 1em;
+	/* box-shadow: 14px 8px 20px 5px var(--focus); */
 }
 
 input{
-	filter: invert(20%);
+	/* filter: invert(20%); */
+	opacity: 0.9;
 }
-
+input[type="checkbox"]
+{
+	filter: invert(10%);
+}
 input[type="checkbox"]:nth-child(2), input[type="checkbox"]:nth-child(6), input[type="checkbox"]:nth-child(10), input[type="checkbox"]:nth-child(14) {
 	filter: invert(0%);
 	/* color: black; */
@@ -113,6 +133,7 @@ input[type="checkbox"] {
   display: grid;
   place-content: center;
   cursor: pointer;
+  border-radius: 15%;
 }
 input[type="checkbox"]::before {
   content: "";
@@ -120,13 +141,15 @@ input[type="checkbox"]::before {
   height: 3.65em;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 0em 1.5em black;
+  box-shadow: inset 0em 1em var(--bg);
+  /* border-radius: 15%; */
 }
 input[type="checkbox"]:checked::before {
-  transform: scale(1);
+  transform: scale(0.9);
 }
 input[type="checkbox"].highlight::before{
   box-shadow: inset 0em 1em var(--focus);
+
 }
 
 input[type="range"]{
@@ -136,14 +159,14 @@ input[type="range"]:hover{
 	opacity: 1;
 }
 input[type="range"]::-moz-range-thumb {
-  width: 15px;
+  width: 10px;
   height: 25px;
-  background: var(--bg);
+  background: var(--focus);
   cursor: pointer;
   /* border: none; */
   border-radius: 0%;
-  border-color: black;
-  border-width: 0.3em;
+  border-color: var(--focus);
+  border-width: 0.2em;
 }
 
 .synth_step {
