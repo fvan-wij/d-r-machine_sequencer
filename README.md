@@ -1,6 +1,7 @@
 # d-r-machine_sequencer
-DÜRÜMACHINE. A drum sequencer with tweakable parameters, FX as well as a custom UI that works in the browser, built with Tone.js. Hobby project.
+![Screenshot](preview.png)
 
+*DÜRÜMACHINE. A drum sequencer with tweakable parameters, FX as well as a custom UI that works in the browser, built with Tone.js.*
 
 **How to intall:**
 
